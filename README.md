@@ -7,71 +7,27 @@ A production-grade streaming analytics platform that ingests Network Rail's live
 ## Architecture
 
 ```mermaid
-flowchart TD
-    subgraph Sources
-        NR_STOMP["Network Rail\nSTOMP Feed\n(publicdatafeeds.networkrail.co.uk:61618)"]
-        NR_CIF["Network Rail\nCIF Schedule\n(daily HTTP download)"]
+flowchart LR
+    subgraph STREAM ["Streaming  (continuous)"]
+        direction LR
+        STOMP(["Network Rail\nSTOMP Feed"]) --> TL["trust_listener"] --> KAFKA[["Kafka\nKRaft · :9092"]] --> TT["transform\n& enrich"]
     end
 
-    subgraph Streaming ["Streaming Layer (Docker)"]
-        TL["trust_listener.py\nSTOMP → Kafka producer"]
-        TT["trust_transform.py\nDecode & route by msg type"]
-        TE["trust_enrich.py\nRedis lookup & enrichment"]
-        LR["live_redis.py\nRedis live-cache writer"]
-        KC["Kafka Connect\n(WePay BigQuery Sink)"]
+    subgraph BATCH ["Daily Batch  ·  Airflow  ·  02:00 UTC"]
+        direction LR
+        CIF(["Network Rail\nCIF Schedule"]) --> SE["schedule_extract"] --> GCS[("GCS")] --> DBT["dbt\nstaging → core → marts"] --> PR["prelim_redis"]
     end
 
-    subgraph Kafka ["Kafka Broker (KRaft, port 9092)"]
-        RAW["rail_movement_raw"]
-        TYPED["typed topics\n(activation, movement, cancellation…)"]
-        ENRICHED["rail_movement_enriched"]
-        DLQ["rail_movement_dlq"]
-    end
+    BQ[("BigQuery\nrail-511.rail_data")]
+    REDIS[("Redis  :6379")]
+    DASH["Streamlit Dashboard\n:8501"]
 
-    subgraph Batch ["Batch Layer (Airflow, 02:00 UTC)"]
-        SE["schedule_extract_daily.py\nCIF → Parquet → GCS → BigQuery"]
-        DBT["dbt\nstaging → intermediate → core → marts"]
-        PR["prelim_redis.py\nRedis warm-up from BigQuery dims"]
-    end
-
-    subgraph Storage
-        GCS["GCS\nrail_storage"]
-        BQ["BigQuery\nrail-511.rail_data"]
-        REDIS["Redis :6379\nLive cache (train3:* keys)"]
-    end
-
-    subgraph Dashboard ["Streamlit Dashboard :8501"]
-        LIVE["Live Trains tab\n(Redis + BQ fallback)"]
-        ROUTES["Route Browser tab"]
-        STATION["Station Search tab"]
-        PERF["Performance tab\n(delay analytics)"]
-    end
-
-    NR_STOMP -->|STOMP| TL
-    TL -->|produce| RAW
-    RAW --> TT
-    TT -->|route| TYPED
-    TT -->|bad msgs| DLQ
-    TYPED --> KC
-    KC -->|sink| BQ
-    TYPED --> TE
-    TE -->|enriched| ENRICHED
-    ENRICHED --> LR
-    LR --> REDIS
-
-    NR_CIF -->|download| SE
-    SE --> GCS
-    GCS --> BQ
-    BQ --> DBT
+    TT -->|Kafka Connect| BQ
+    TT -->|live events| REDIS
     DBT --> BQ
-    DBT -->|trigger| PR
     PR --> REDIS
-
-    REDIS --> LIVE
-    BQ --> LIVE
-    BQ --> ROUTES
-    BQ --> STATION
-    BQ --> PERF
+    BQ --> DASH
+    REDIS -->|live cache| DASH
 ```
 
 ---
