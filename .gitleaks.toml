@@ -1,0 +1,34 @@
+# Gitleaks configuration — https://github.com/gitleaks/gitleaks
+# Run: gitleaks detect --source . -v
+# Install: brew install gitleaks  /  scoop install gitleaks
+
+title = "Rail3 secret scanning rules"
+
+[extend]
+useDefault = true   # inherit all built-in rules (AWS, GCP, GitHub tokens, etc.)
+
+[[rules]]
+id          = "network-rail-stomp-pass"
+description = "Network Rail STOMP password in source"
+regex       = '''(?i)(stomp[_-]?pass\s*=\s*)["']?[^\s"']{6,}["']?'''
+tags        = ["network-rail", "credentials"]
+
+[[rules]]
+id          = "gcp-service-account-key"
+description = "GCP service account private key detected"
+regex       = '''"private_key":\s*"-----BEGIN (RSA )?PRIVATE KEY-----'''
+tags        = ["gcp", "credentials"]
+
+[allowlist]
+description = "Ignore example / placeholder values"
+regexes     = [
+    '''your_email@example\.com''',
+    '''your_password''',
+    '''changeme''',
+    '''REPLACE_ME''',
+]
+paths       = [
+    ".env.example",
+    "README.md",
+    "docs/",
+]

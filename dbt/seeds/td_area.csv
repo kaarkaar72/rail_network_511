@@ -1,0 +1,208 @@
+area_id,name,sig,rte,lat,trk,pts,lxg,Notes
+A2,Ashford IECC B,False,False,False,False,False,False,
+A3,Ashford Front-End TD,False,False,False,False,False,False,
+AD,Ashford IECC A,False,False,False,False,False,False,
+AL,Alnmouth SB TD,False,False,False,False,False,False,
+AN,Allington Junction,False,False,False,False,False,False,
+AS,Aston SCC TD,False,False,False,False,False,False,
+AW,Acton Wells,False,False,False,False,False,False,
+B0,TBC,False,False,False,False,False,False,
+B1,BAROC Strawberry Hill Scalable,False,False,False,False,False,False,Commissioned 2021-03-30
+B2,BAROC Ascot Scalable,False,False,False,False,False,False,Commissioned 2022-03-30
+B3,BAROC Farncombe Scalable,False,False,False,False,False,False,Planned October 2025
+B4,TBC,False,False,False,False,False,False,
+B5,TBC,False,False,False,False,False,False,
+B6,TBC,False,False,False,False,False,False,
+B8,TBC,False,False,False,False,False,False,
+B9,TBC,False,False,False,False,False,False,
+BA,Barnsley PSB TD,False,False,False,False,False,False,S-Class enabled 2021-04-11
+BE,Basingstoke,False,False,False,False,False,False,
+BG,WMSC Bromsgrove Corridor WestCAD,False,False,False,False,False,False,S-Class enabled 2016-11-07
+BL,Bristol PSB ITD,False,False,False,False,False,False,
+BM,Barnham DTD,False,False,False,False,False,False,
+BP,Basingstoke (Poole - Wool),False,False,False,False,False,False,
+BS,Barnes TD,False,False,False,False,False,False,
+BU,EMCC Burton Area WestCAD,False,False,False,False,False,False,Commissioned 2018-08-17
+BX,Basingstoke (WoE),False,False,False,False,False,False,
+C0,TfW CVLICC TAM Area WestCAD,False,False,False,False,False,False,Commissioned 2023-04-29
+C1,SWCC Newport Corridor WestCAD,False,False,False,False,False,False,
+C2,SWCC Cardiff Area MCS,False,False,False,False,False,False,
+C3,SWCC Shrewsbury North WestCAD,False,False,False,False,False,False,
+C4,WROC Shrewsbury - Newport WestCAD,False,False,False,False,False,False,
+C5,WROC North Wales Coast WestCAD,False,False,False,False,False,False,Commissioned 2018-03-09
+C6,SWCC Swansea Area WestCAD,False,False,False,False,False,False,Commissioned 2019-02-26
+C7,WROC Bridgend Area WestCAD,False,False,False,False,False,False,Planned 2029
+CA,Cambridge ITD,False,False,False,False,False,False,
+CC,Colchester,False,False,False,False,False,False,
+CD,Castleford,False,False,False,False,False,False,S-Class enabled 2021-04-04
+CE,Crewe PSB,False,False,False,False,False,False,
+CH,Chichester,False,False,False,False,False,False,
+CL,Carlisle PSB TD,False,False,False,False,False,False,
+CS,Chester PSB,False,False,False,False,False,False,
+CT,Channel Tunnel,False,False,False,False,False,False,
+CV,WMSC Cherwell Valley WestCAD,False,False,False,False,False,False,Commissioned 2016-08-08
+CY,WMSC Coventry WestCAD,False,False,False,False,False,False,
+D0,TVSC Bristol Temple Meads Area Scalable IECC,False,False,False,False,False,False,Commissioned 2018-03-29
+D1,TVSC Reading IECC A,False,False,False,False,False,False,
+D2,TVSC Reading IECC B,False,False,False,False,False,False,
+D3,TVSC Paddington Area Scalable IECC,False,False,False,False,False,False,
+D4,TVSC Hayes Area Scalable IECC,False,False,False,False,False,False,
+D5,TVSC Didcot IECC,False,False,False,False,False,False,
+D6,TVSC Maidenhead Area Scalable IECC,False,False,False,False,False,False,
+D7,TVSC Swindon Area IECC,False,False,False,False,False,False,
+D9,TVSC Stoke Gifford IECC,False,False,False,False,False,False,Commissioned 2016-08-30
+DA,TVSC Acton Area Scalable IECC,False,False,False,False,False,False,Commissioned 2021-12-21
+DJ,Deansgate Junction Area,False,False,False,False,False,False,Planned 2026
+DR,Doncaster PSB TD,False,False,False,False,False,False,
+DU,Dundee TD,False,False,False,False,False,False,Commissioned 2021-09-29
+DY,EMCC Derby Area WestCAD,False,False,False,False,False,False,Commissioned 2018-09-03
+E1,Edgeley No 1,False,False,False,False,False,False,
+EA,"Edinburgh SCC IECC ""A"" (Scalable)",False,False,False,False,False,False,Commissioned 2022-11-20
+EB,"Edinburgh SCC IECC ""B"" (Scalable)",False,False,False,False,False,False,Commissioned 2023-06-11
+EC,"Edinburgh SCC IECC ""C"" (Scalable)",False,False,False,False,False,False,Commissioned 2023-10-29
+ED,"Edinburgh SCC IECC ""D"" (Scalable)",False,False,False,False,False,False,
+EE,"Edinburgh SCC IECC ""E"" (Scalable)",False,False,False,False,False,False,Commissioned 2023-10-29
+EH,Eastleigh,False,False,False,False,False,False,
+EK,East Kent MCS ITD,False,False,False,False,False,False,
+EN,Cambridge IECC (Ely - Norwich),False,False,False,False,False,False,
+EX,Exeter,False,False,False,False,False,False,
+G1,WSSC Glasgow Area WestCAD,False,False,False,False,False,False,
+G2,WSSC Paisley ITD,False,False,False,False,False,False,
+G3,WSSC Newton/Whifflet Area WestCAD,False,False,False,False,False,False,Commissioned 2017-04-18
+G4,WSSC Motherwell/Carstairs Area WestCAD,False,False,False,False,False,False,Commissioned 2018-08-16
+GD,Guildford,False,False,False,False,False,False,
+GL,Gloucester ITD,False,False,False,False,False,False,
+HG,Harrogate IECC,False,False,False,False,False,False,
+HN,Heaton Norris,False,False,False,False,False,False,
+HT,Havant,False,False,False,False,False,False,
+IH,Inverness Highlands WestCAD,False,False,False,False,False,False,Commissioned 2017-12-05
+IN,Inverness WestCAD,False,False,False,False,False,False,Commissioned 2024-12-23
+IR,Inverness RETB,False,False,False,False,False,False,Commissioned 2023-02-10
+KG,EMCC Kettering Area WestCAD,False,False,False,False,False,False,Commissioned 2018-02-21
+KM,EXROC Mid-Cornwall Area WestCAD,False,False,False,False,False,False,Commissioned 2024-02-06
+KN,WMSC Kings Norton WestCAD,False,False,False,False,False,False,Commissioned 2016-11-07
+KW,EXROC West Cornwall Area WestCAD,False,False,False,False,False,False,
+L1,Lincoln West,False,False,False,False,False,False,Planned 2025
+L2,Lincoln East,False,False,False,False,False,False,
+LA,Lancing,False,False,False,False,False,False,
+LC,WMSC Leamington Corridor,False,False,False,False,False,False,
+LN,Lincoln,False,False,False,False,False,False,Planned decommissioning 2025
+LR,EMCC Leicester Area WestCAD,False,False,False,False,False,False,
+M0,MRROC Lime Street WestCAD,False,False,False,False,False,False,Commissioned 2018-07-26
+M1,MRROC Liverpool Area WestCAD,False,False,False,False,False,False,
+M2,MRROC Manchester North WestCAD,False,False,False,False,False,False,
+M3,MRROC Manchester Central WestCAD,False,False,False,False,False,False,
+M4,MRROC Wavertree (East) WestCAD,False,False,False,False,False,False,Commissioned 2018-05-07
+M5,MRROC Wavertree (West) WestCAD,False,False,False,False,False,False,Commissioned 2018-12-19
+M6,MRROC Macclesfield Area WestCAD,False,False,False,False,False,False,Commissioned 2022-08-29
+M7,MRROC Crewe South Area,False,False,False,False,False,False,Commissioned 2024-11-12
+M8,MRROC Crewe Independent Lines,False,False,False,False,False,False,Commissioned 2024-11-12
+M9,MRROC Blackpool Area WestCAD,False,False,False,False,False,False,Commissioned 2018-01-29
+MA,Maidstone East,False,False,False,False,False,False,
+MD,EMCC Mansfield,False,False,False,False,False,False,
+ME,Marylebone Chilterns IECC,False,False,False,False,False,False,
+MH,Machynlleth,False,False,False,False,False,False,
+MO,Morpeth SB TD,False,False,False,False,False,False,
+MP,Manchester Piccadilly PSB TD,False,False,False,False,False,False,
+MS,Manchester South,False,False,False,False,False,False,
+MZ,Manchester East WestCAD,False,False,False,False,False,False,
+NE,EMCC North Erewash Area WestCAD,False,False,False,False,False,False,
+NJ,Neasden Jn TD,False,False,False,False,False,False,Commissioned 2016
+NK,Ashford North Kent MCS,False,False,False,False,False,False,
+NL,Colchester NYL Area MCS,False,False,False,False,False,False,Commissioned 2020-02-04
+NM,EMCC Nottingham WestCAD,False,False,False,False,False,False,
+NS,WMSC New Street Station WestCAD,False,False,False,False,False,False,Commissioned 2022-12-21
+NX,East London Line,False,False,False,False,False,False,
+PC,Port Talbot (Carmarthen),False,False,False,False,False,False,Planned for October 2025
+PH,Plymouth,False,False,False,False,False,False,S-Class enabled 2024-03-17
+PJ,WMSC Proof House Jn WestCAD,False,False,False,False,False,False,Commissioned 2017-12-17
+PL,Port Talbot PSB Llanelli WestCAD,False,False,False,False,False,False,Commissioned 2023-05-19
+PT,Port Talbot,False,False,False,False,False,False,
+PX,Preston PSB TD,False,False,False,False,False,False,
+Q0,ROROC Crossrail RCC (Core),False,False,False,False,False,False,Commissioned 2019-02-14
+Q1,ROROC Stratford IECC,False,False,False,False,False,False,Commissioned 2016-11-06
+Q2,ROROC Shenfield IECC,False,False,False,False,False,False,Commissioned 2017-02-26
+Q3,ROROC West Anglia Area IECC,False,False,False,False,False,False,Commissioned 2019-03-08
+Q4,ROROC Liverpool Street Area IECC,False,False,False,False,False,False,Commissioned 2020-09-13
+Q5,ROROC LT&S (Main) Area IECC,False,False,False,False,False,False,Commissioned 2020-09-27
+Q6,ROROC LT&S (Loop) Area IECC,False,False,False,False,False,False,Commissioned 2020-09-27
+Q7,ROROC North London Area IECC,False,False,False,False,False,False,Commissioned 2023-12-03
+R1,Rugby SCC (Watford - Bletchley ITD),False,False,False,False,False,False,
+R2,Rugby SCC (Northampton - Rugby ITD),False,False,False,False,False,False,
+R3,RYROC Stafford Area WestCAD,False,False,False,False,False,False,Commissioned 2015-09-01
+R4,RYROC Colwich Area WestCAD,False,False,False,False,False,False,Commissioned 2024-01-11
+R5,RYROC Claydon MCS,False,False,False,False,False,False,Commissioned 2024-08-24
+R6,RYROC Wembley ML WestCAD,False,False,False,False,False,False,Planned 2027
+RT,Marston Vale MCS,False,False,False,False,False,False,
+RW,Rochdale West,False,False,False,False,False,False,
+SC,Scunthorpe,False,False,False,False,False,False,
+SJ,WMSC Stourbridge WestCAD,False,False,False,False,False,False,
+SK,Stoke On Trent,False,False,False,False,False,False,
+SM,Stirling Middle,False,False,False,False,False,False,
+SO,South Tottenham,False,False,False,False,False,False,
+SS,Sandhills Area WestCAD,False,False,False,False,False,False,Commissioned 2022-03-27
+SV,WMSC Stour Valley WestCAD,False,False,False,False,False,False,Commissioned 2017-12-17
+SX,Saxmundham (East Suffolk) MCS,False,False,False,False,False,False,
+T0,TYROC Ashington Workstation,False,False,False,False,False,False,Commissioned 2024-03-27
+T1,TYROC Newcastle/Gateshead Area WestCAD,False,False,False,False,False,False,Commissioned 2021-12-25
+T2,TYROC Darlington Area WestCAD,False,False,False,False,False,False,Commissioned 2021-12-25
+T3,TYROC Sunderland Area WestCAD,False,False,False,False,False,False,Commissioned 2021-12-25
+TB,Three Bridges ASC ITD,False,False,False,False,False,False,
+TD,WMSC Telford,False,False,False,False,False,False,
+TE,Tonbridge,False,False,False,False,False,False,
+TH,Thrumpton,False,False,False,False,False,False,
+TN,EMCC Chesterfield Area WestCAD,False,False,False,False,False,False,
+TW,Tweedmouth SB TD,False,False,False,False,False,False,
+VC,London Victoria,False,False,False,False,False,False,
+W2,Woking (Farnham),False,False,False,False,False,False,
+WA,Warrington PSB,False,False,False,False,False,False,
+WC,Wembley C Sidings,False,False,False,False,False,False,Commissioned 2015-06-07
+WD,Winsford PSB,False,False,False,False,False,False,
+WE,Worksop,False,False,False,False,False,False,
+WG,EMCC Wigston Area WestCAD,False,False,False,False,False,False,Commissioned 2024-11-11
+WH,West Hampstead WestCAD,False,False,False,False,False,False,Commissioned 2023-12-24
+WI,Wimbledon NCP,False,False,False,False,False,False,
+WJ,Wembley Mainline (Watford) WestCAD,False,False,False,False,False,False,
+WK,Wakefield Kirkgate,False,False,False,False,False,False,
+WL,WMSC Walsall WestCAD,False,False,False,False,False,False,
+WN,WMSC Water Orton WestCAD,False,False,False,False,False,False,
+WO,WMSC Wolverhampton WestCAD,False,False,False,False,False,False,
+WS,Willesden Suburban,False,False,False,False,False,False,
+WW,Westbury,False,False,False,False,False,False,
+WY,Wembley Mainline PSB,False,False,False,False,False,False,
+X0,TBROC Thameslink Core WestCAD,False,False,False,False,False,False,Commissioned 2015-03-15
+X1,TBROC London Bridge Central WestCAD,False,False,False,False,False,False,Commissioned 2015-01-05
+X2,TBROC Charing Cross WestCAD,False,False,False,False,False,False,Commissioned 2016-01-04
+X3,TBROC Cannon Street WestCAD,False,False,False,False,False,False,Commissioned 2016-08-30
+X5,TBROC Herne Hill WestCAD,False,False,False,False,False,False,Planned December 2027
+X6,TBROC Nunhead WestCAD,False,False,False,False,False,False,Planned December 2027
+X7,TBROC East Sussex MCS,False,False,False,False,False,False,Commissioned 2019-12-02
+X8,TBROC Victoria Kent WestCAD,False,False,False,False,False,False,Commissioned 2022-12-21
+X9,TBROC Tulse Hill MCS,False,False,False,False,False,False,Commissioned 2024-10-25
+XA,TBROC Victoria Sussex WestCAD (link 1),False,False,False,False,False,False,Commissioned 2022-12-27
+XB,TBROC Victoria Sussex WestCAD (link 2),False,False,False,False,False,False,Commissioned 2022-12-24
+XC,TBROC Stewarts Lane WestCAD,False,False,False,False,False,False,Planned December 2027
+XE,Warrington Central,False,False,False,False,False,False,
+XL,Hunts Cross,False,False,False,False,False,False,
+Y0,YKROC North Lincs WestCAD,False,False,False,False,False,False,Commissioned 2015-12-30
+Y1,YKROC York Area WestCAD,False,False,False,False,False,False,Commissioned 2024-12-26
+Y2,YKROC Leeds City Area IECC,False,False,False,False,False,False,Commissioned 2018-12-25
+Y3,YKROC Leeds North West Area IECC,False,False,False,False,False,False,Commissioned 2018-12-25
+Y4,YKROC Sheffield WestCAD,False,False,False,False,False,False,Commissioned 2016-05-02
+Y5,YKROC Brough WestCAD,False,False,False,False,False,False,Commissioned 2018-11-07
+Y6,YKROC Huddersfield WestCAD,False,False,False,False,False,False,Commissioned 2018-01-18
+Y7,YKROC Halifax WestCAD,False,False,False,False,False,False,Commissioned 2018-10-17
+Y8,YKROC Kings Cross North WestCAD,False,False,False,False,False,False,Commissioned 2018-11-26
+Y9,YKROC Kings Cross South WestCAD,False,False,False,False,False,False,Commissioned 2021-04-14
+YA,YKROC Hartlepool Area WestCAD,False,False,False,False,False,False,Commissioned 2021-02-07
+YB,YKROC Middlesbrough Area WestCAD,False,False,False,False,False,False,Commissioned 2021-11-15
+YC,YKROC Peterborough Area WestCAD,False,False,False,False,False,False,Commissioned 2023-08-20
+YD,YKROC Huntingdon Area WestCAD,False,False,False,False,False,False,Commissioned 2023-08-20
+YE,YKROC Leeds East,False,False,False,False,False,False,Planned December 2025
+YO,Yoker SCC MCS,False,False,False,False,False,False,
+Z1,Test TD,False,False,False,False,False,False,"Dummy TD used for testing, data should be ignored"
+ZA,Ashford TDC,False,False,False,False,False,False,
+ZB,Bournemouth TDC,False,False,False,False,False,False,
+ZG,Guildford TDC,False,False,False,False,False,False,
+ZH,Horsham TDC,False,False,False,False,False,False,
+ZR,Rainham TDC,False,False,False,False,False,False,

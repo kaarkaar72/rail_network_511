@@ -1,0 +1,40 @@
+# Credentials — never bake into an image
+.env
+service-account.json
+*.key
+credentials*.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# dbt build artifacts
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# Data files
+*.parquet
+*.gz
+*.json.gz
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# Virtual environments
+.venv/
+venv/
+env/

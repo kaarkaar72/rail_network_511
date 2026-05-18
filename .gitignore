@@ -1,0 +1,60 @@
+# Credentials & secrets — never commit these
+.env
+service-account.json
+*.key
+credentials*.json
+*.p12
+*.pem
+gcp-*.json
+*-service-account.json
+*-sa.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# Data files
+*.parquet
+*.gz
+*.json.gz
+
+# dbt personal config
+dbt/.user.yml
+
+# Connector JARs (download separately — not tracked in git)
+connect-plugins/**/*.jar
+connect-plugins/**/*.zip
+
+# Large binary / installer files
+*.exe
+*.msi
+*.dmg
+
+# Large data files (re-generate locally)
+scheduled_routes_simplified.geojson
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# Claude Code local settings
+.claude/

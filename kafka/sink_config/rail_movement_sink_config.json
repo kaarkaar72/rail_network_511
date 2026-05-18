@@ -1,0 +1,15 @@
+{
+  "name": "rail-movement-sink", 
+  "config": {
+    "connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
+    "tasks.max": "1",
+    "topics": "rail_movement_clean",
+    "project": "rail-511",
+    "defaultDataset": "rail_data",
+    "keyfile": "/etc/kafka-connect/service-account.json",
+    "autoCreateTables": "false",
+    "sanitizeTopics": "true",
+    "bigQueryPartitionDecorator": "false",
+    "tableNameFormat": "movement"
+  }
+}

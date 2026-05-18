@@ -1,0 +1,55 @@
+Code,Category,Description
+OL,Ordinary Passenger Trains,London Underground/Metro Service
+OU,Ordinary Passenger Trains,Unadvertised Ordinary Passenger
+OO,Ordinary Passenger Trains,Ordinary Passenger
+OS,Ordinary Passenger Trains,Staff Train
+OW,Ordinary Passenger Trains,Mixed
+XC,Express Passenger Trains,Channel Tunnel
+XD,Express Passenger Trains,Sleeper (Europe Night Services)
+XI,Express Passenger Trains,International
+XR,Express Passenger Trains,Motorail
+XU,Express Passenger Trains,Unadvertised Express
+XX,Express Passenger Trains,Express Passenger
+XZ,Express Passenger Trains,Sleeper (Domestic)
+BR,"Buses & Ships","Bus – Replacement due to engineering work"
+BS,"Buses & Ships","Bus – WTT Service"
+SS,"Buses & Ships",Ship
+EE,Empty Coaching Stock Trains,"Empty Coaching Stock (ECS)"
+EL,Empty Coaching Stock Trains,"ECS, London Underground/Metro Service"
+ES,Empty Coaching Stock Trains,ECS & Staff
+JJ,Parcels and Postal Trains,Postal
+PM,Parcels and Postal Trains,"Post Office Controlled Parcels"
+PP,Parcels and Postal Trains,Parcels
+PV,Parcels and Postal Trains,Empty NPCCS
+DD,Departmental Trains,Departmental
+DH,Departmental Trains,Civil Engineer
+DI,Departmental Trains,Mechanical & Electrical Engineer
+DQ,Departmental Trains,Stores
+DT,Departmental Trains,Test
+DY,Departmental Trains,Signal & Telecommunications Engineer
+ZB,Light Locomotives,Locomotive & Brake Van
+ZZ,Light Locomotives,Light Locomotive
+J2,Railfreight Distribution,"RfD Automotive (Components)"
+H2,Railfreight Distribution,"RfD Automotive (Vehicles)"
+J3,Railfreight Distribution,"RfD Edible Products (UK Contracts)"
+J4,Railfreight Distribution,"RfD Industrial Minerals (UK Contracts)"
+J5,Railfreight Distribution,"RfD Chemicals (UK Contracts)"
+J6,Railfreight Distribution,"RfD Building Materials (UK Contracts)"
+J8,Railfreight Distribution,"RfD General Merchandise (UK Contracts)"
+H8,Railfreight Distribution,"RfD European"
+J9,Railfreight Distribution,"RfD Freightliner (Contracts)"
+H9,Railfreight Distribution,"RfD Freightliner (Other)"
+A0,Trainload Freight,"Coal (Distributive)"
+E0,Trainload Freight,"Coal (Electricity) MGR"
+B0,Trainload Freight,"Coal (Other) and Nuclear"
+B1,Trainload Freight,Metals
+B4,Trainload Freight,Aggregates
+B5,Trainload Freight,"Domestic and Industrial Waste"
+B6,Trainload Freight,"Building Materials (TLF)"
+B7,Trainload Freight,Petroleum Products
+H0,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel (Mixed Business)"
+H1,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel Intermodal"
+H3,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel Automotive"
+H4,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel Contract Services"
+H5,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel Haulmark"
+H6,"Railfreight Distribution (Channel Tunnel)","RfD European Channel Tunnel Joint Venture"

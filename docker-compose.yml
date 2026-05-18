@@ -1,0 +1,222 @@
+version: '3.8'
+
+# ── Shared Airflow config ─────────────────────────────────────────────────────
+x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: Dockerfile.airflow
+  environment: &airflow-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
+    # Override paths for files mounted into the Airflow container
+    GCP_SA_KEYFILE: /opt/airflow/service-account.json
+    DBT_KEYFILE_PATH: /opt/airflow/service-account.json
+    # Override Kafka/Redis to use Docker service names
+    KAFKA_BOOTSTRAP_SERVERS: broker:29092
+    REDIS_HOST: redis
+    REDIS_PORT: 6379
+  env_file:
+    - .env
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./extraction:/opt/airflow/extraction
+    - ./pipelines:/opt/airflow/pipelines
+    - ./redis:/opt/airflow/redis
+    - ./dbt:/opt/airflow/dbt
+    - ./service-account.json:/opt/airflow/service-account.json:ro
+    - airflow_logs:/opt/airflow/logs
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+# ── Shared streaming service config ──────────────────────────────────────────
+x-streaming-common: &streaming-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+  env_file:
+    - .env
+  restart: unless-stopped
+  depends_on:
+    broker:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+
+  # ── Kafka Broker ─────────────────────────────────────────────────────────────
+  broker:
+    image: apache/kafka:3.7.0
+    hostname: broker
+    container_name: broker
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@broker:29093
+      KAFKA_LISTENERS: PLAINTEXT://broker:29092,CONTROLLER://broker:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 9092 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ── Kafka Connect ─────────────────────────────────────────────────────────────
+  connect:
+    image: confluentinc/cp-kafka-connect:7.5.0
+    container_name: connect
+    depends_on:
+      broker:
+        condition: service_healthy
+    ports:
+      - "8083:8083"
+    environment:
+      KAFKA_LOG4J_LOGGERS: "org.apache.kafka.connect.runtime.WorkerSinkTask=INFO,com.wepay.kafka.connect.bigquery=INFO"
+      CONNECT_MAX_POLL_INTERVAL_MS: 600000
+      CONNECT_MAX_POLL_RECORDS: 500
+      CONNECT_BOOTSTRAP_SERVERS: broker:29092
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect
+      CONNECT_GROUP_ID: "connect-group"
+      CONNECT_CONFIG_STORAGE_TOPIC: "connect-configs"
+      CONNECT_OFFSET_STORAGE_TOPIC: "connect-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "connect-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/etc/kafka-connect/jars"
+    volumes:
+      - ./connect-plugins/wepay-kafka-connect-bigquery-2.5.7:/etc/kafka-connect/jars
+      - ./service-account.json:/etc/kafka-connect/service-account.json:ro
+    restart: unless-stopped
+
+  # ── Redis ─────────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Airflow Postgres ──────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: airflow-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Airflow Init (run once) ───────────────────────────────────────────────────
+  airflow-init:
+    <<: *airflow-common
+    container_name: airflow-init
+    command: >
+      bash -c "
+        airflow db migrate &&
+        airflow users create
+          --username admin
+          --password admin
+          --firstname Admin
+          --lastname User
+          --role Admin
+          --email admin@rail3.local
+      "
+    restart: "no"
+
+  # ── Airflow Webserver (UI on :8080) ───────────────────────────────────────────
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ── Airflow Scheduler ─────────────────────────────────────────────────────────
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: airflow-scheduler
+    command: scheduler
+    restart: unless-stopped
+
+  # ── Streaming: STOMP Listener ─────────────────────────────────────────────────
+  trust-listener:
+    <<: *streaming-common
+    container_name: trust-listener
+    command: python extraction/trust_listener.py
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: broker:29092
+
+  # ── Streaming: Transformer ────────────────────────────────────────────────────
+  trust-transform:
+    <<: *streaming-common
+    container_name: trust-transform
+    command: python extraction/trust_transform.py
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: broker:29092
+
+  # ── Streaming: Enrichment ─────────────────────────────────────────────────────
+  trust-enrich:
+    <<: *streaming-common
+    container_name: trust-enrich
+    command: python pipelines/trust_enrich.py
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: broker:29092
+      REDIS_HOST: redis
+
+  # ── Streaming: Redis Updater ──────────────────────────────────────────────────
+  live-redis-updater:
+    <<: *streaming-common
+    container_name: live-redis-updater
+    command: python pipelines/live_redis.py
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: broker:29092
+      REDIS_HOST: redis
+
+volumes:
+  redis_data:
+  postgres_data:
+  airflow_logs:

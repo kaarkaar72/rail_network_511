@@ -1,0 +1,13 @@
+# Batch pipeline dependencies for Airflow task containers
+# Excludes dashboard-only packages (streamlit, altair, pydeck, streamlit-autorefresh)
+stomp.py==7.0.0
+fastavro==1.7.0
+pandas==1.5.3
+python-dotenv==1.1.1
+confluent-kafka==2.5.0
+google-cloud-bigquery==3.25.0
+google-cloud-storage==2.18.0
+google-auth==2.35.0
+redis==5.0.1
+dbt-bigquery==1.8.2
+requests==2.32.3

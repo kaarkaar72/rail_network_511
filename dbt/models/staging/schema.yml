@@ -1,0 +1,58 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_DATABASE', 'rail-511') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'rail_data') }}"
+    loaded_at_field: ingest_ts
+    freshness:
+      warn_after: {count: 8, period: hour}
+      error_after: {count: 24, period: hour}
+    tables:
+      - name: rail_movement_clean
+        description: "Raw train movement events from the TRUST STOMP feed via Kafka Connect"
+        columns:
+          - name: train_id
+            tests:
+              - not_null
+          - name: actual_timestamp
+            tests:
+              - not_null
+
+      - name: rail_activation_clean
+        description: "Train activation events — links a train_id to a scheduled train_uid"
+        columns:
+          - name: train_id
+            tests:
+              - not_null
+          - name: train_uid
+            tests:
+              - not_null
+
+      - name: rail_cancellation_clean
+        description: "Train cancellation events from the TRUST feed"
+
+      - name: rail_reinstatement_clean
+        description: "Train reinstatement events (cancelled services restored)"
+
+      - name: rail_change_identity_clean
+        description: "Train change-of-identity events"
+
+      - name: rail_change_origin_clean
+        description: "Train change-of-origin events"
+
+      - name: rail_change_location_clean
+        description: "Train change-of-location events"
+
+      - name: rail_td_mov_clean
+        description: "Train Describer berth movement events"
+
+      - name: rail_schedule_raw
+        description: "Daily CIF schedule dump, loaded from GCS Parquet files"
+        columns:
+          - name: record_type
+            tests:
+              - not_null
+          - name: ingest_ts
+            tests:
+              - not_null
